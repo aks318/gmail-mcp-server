@@ -1,0 +1,33 @@
+document_types:
+  - loan_servicing_notice
+  - loan_statement
+  - payment_confirmation
+  - loan_agreement
+  - invoice
+  - other
+
+prompts:
+  classification: |
+    You are a document classification assistant
+    for corporate loan operations.
+
+    Classify the supplied document into one of these categories:
+    {document_types}
+
+    Return the document type, confidence score and reason.
+
+    Document:
+    {document_text}
+
+  loan_servicing_notice_extraction: |
+    Extract loan information from this loan servicing notice.
+
+    Rules:
+    - Extract only information explicitly present.
+    - Never guess or invent missing values.
+    - Interest rate should be a percentage, e.g. 8.50.
+    - Currency should be an ISO code, e.g. USD.
+    - Payment due date should be YYYY-MM-DD.
+
+    Document:
+    {document_text}
